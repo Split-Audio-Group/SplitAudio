@@ -61,10 +61,15 @@ public class MyServletDB extends HttpServlet {
             String display_name = rs.getString("DISPLAY_NAME");
             String email = rs.getString("EMAIL");
             String password = rs.getString("PASSWORD");
+            System.out.print("USER ID: " + id + ", ");
+            System.out.print("USER NAME: " + username + ", ");
+            System.out.print("USER EMAIL: " + email + ", ");
+            System.out.print("USER DISPLAY NAME: " + display_name + ", ");
+            System.out.print("USER PASSWORD: " + password + "<br>");
             response.getWriter().append("USER ID: " + id + ", ");
             response.getWriter().append("USER NAME: " + username + ", ");
             response.getWriter().append("USER EMAIL: " + email + ", ");
-            response.getWriter().append("USER DISPLAY NAME: " + display_name + "<br>");
+            response.getWriter().append("USER DISPLAY NAME: " + display_name + ", ");
             response.getWriter().append("USER PASSWORD: " + password + "<br>");
          }
       } catch (SQLException e) {
