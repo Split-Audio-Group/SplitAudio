@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/SimpleFormSearch")
+@WebServlet("Search")
 public class Search extends HttpServlet {
    private static final long serialVersionUID = 1L;
 
@@ -80,7 +80,7 @@ public class Search extends HttpServlet {
                out.println("Password: " + printPassword + "<br>");
             }
          }
-         out.println("<a href=/webproject/search_williams.html>Search Data</a> <br>");
+         out.println("<a href=/webproject/DatabaseSearch.html>Search Data</a> <br>");
          out.println("</body></html>");
          rs.close();
          preparedStatement.close();
