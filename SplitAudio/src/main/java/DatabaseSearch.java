@@ -48,14 +48,14 @@ public class DatabaseSearch extends HttpServlet implements Info {
    void display(List<User> listUsers, PrintWriter out) {
       for (User user : listUsers) {
          System.out.println("[DBG] " + user.getId() + ", " //
-               + user.getUserName() + ", " //
-               + user.getDisplayName() + ", "
+               + user.getName() + ", " //
+               + user.getdisplay_Name() + ", "
                + user.getEmail() + ", "	
                + user.getPassword());
 
          out.println("<li>" + user.getId() + ", " //
-                 + user.getUserName() + ", " //
-                 + user.getDisplayName() + ", "
+                 + user.getName() + ", " //
+                 + user.getdisplay_Name() + ", "
                  + user.getEmail() + ", "	
                  + user.getPassword() +  "</li>");
       }

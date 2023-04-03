@@ -5,4 +5,5 @@ public interface Info {
    public String searchWebName = "DatabaseSearch.html";
    public String insertWebName = "DatabaseInsert.html";
    public String deleteWebName = "DatabaseDelete.html";
+   public String logIn = "LogIn.html";
 }

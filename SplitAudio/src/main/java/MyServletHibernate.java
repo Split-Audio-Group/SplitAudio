@@ -42,14 +42,14 @@ public class MyServletHibernate extends HttpServlet {
       List<User> listEmployees = UtilDB.listUsers();
       for (User user : listEmployees) {
          System.out.println("[DBG] " + user.getId() + ", " //
-               + user.getUserName() + ", " //
-               + user.getDisplayName() + ", " //
+               + user.getName() + ", " //
+               + user.getdisplay_Name() + ", " //
                + user.getEmail() + ", " //
                + user.getPassword());
 
          out.println("<li>" + user.getId() + ", " //
-        		 + user.getUserName() + ", " //
-                 + user.getDisplayName() + ", " //
+        		 + user.getName() + ", " //
+                 + user.getdisplay_Name() + ", " //
                  + user.getEmail() + ", " //
                  + user.getPassword() + "</li>");
       }

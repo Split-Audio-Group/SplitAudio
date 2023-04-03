@@ -14,7 +14,7 @@ public class SessionLog {
 	
 	public void setUser(User user) {
 		if(currentUser != null) {
-			System.out.println("Changing user from " + currentUser.getUserName() + " to " + user.getUserName());
+			System.out.println("Changing user from " + currentUser.getName() + " to " + user.getName());
 		}
 		currentUser = user;
 	}
