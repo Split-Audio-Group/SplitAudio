@@ -1,0 +1,61 @@
+<html>
+<head>
+<style>
+header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;	 
+}
+nav {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:300px;
+    width:100px;
+    float:left;
+    padding:5px;	      
+}
+section {
+    width:350px;
+    float:left;
+    padding:10px;	 	 
+}
+footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;	 	 
+}
+</style>
+</head>
+
+<body>
+<header>
+<h1> Insert Data </h1>
+</header>
+
+<nav>
+
+</nav>
+ 
+<section>
+	<h1>User Input</h1>
+	
+	<form action="DatabaseInsert" method="POST">
+	
+		User Name: <input type="text" name="userName"> <br />
+		Display Name: <input type="text" name="displayName"> <br />
+		Email: <input type="text" name="email"> <br />
+		Password: <input type="text" name="password"> <br />
+		
+		<input type="submit" value="Submit" />
+	</form>
+
+</section>
+
+<footer>
+Copyright
+</footer>
+</body>
+</html>

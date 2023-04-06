@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.loginbox {
+	width: 300px;
+	height: 480px;
+	background: #fff;
+	color: #000;
+	top: 50%;
+	left: 50%;
+	position: absolute;
+	transform: translate(-50%, -50%);
+	box-sizing: border-box;
+	padding: 50px 30px;
+}
+
+.login{
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	position: absolute;
+	top: -50px;
+	left: calc(50% - 50px);
+
+
+}
+
+h1{
+	margin: 0;
+	padding: 0 0 20px;
+	text-align: center;
+	font-size: 22px;
+
+}
+
+.loginbox p{
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+}
+
+.loginbox input{
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+input[type="submit"]
+{
+	border: none;
+	outline: none;
+	height: 40px;
+	background: #000;
+	color: #fff;
+	font-size: 18px;
+	border-radius: 20px;
+}
+
+input[type="submit"]:hover
+{
+	cursor: pointer;
+	background: #909090;
+	color: #000;
+	 opacity:1;
+}
+.container {
+  padding: 16px;
+}
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+
+
+</style>
+
+<title>Sign Up</title>
+
+</head>
+
+<body style=" background-color: #909090;">
+ 
+		<h1>Split Audio</h1>
+		<form action="Signup" method="post" >
+		<div class="cointainer">
+		<p style="font-size:25px;">Sign Up</p>
+        <p>Please fill in this form to create an account.</p>
+		<hr>
+		        <label for="email"><b>Username</b></label>
+			    <input type="text"  placeholder="Enter Username"  name="userName" required>  <br />  <br />
+			    
+			    <label for="email"><b>Display Name</b></label>
+				<input type="text"  placeholder=" Enter Display Name"  name="displayName" >  <br />  <br />
+				
+				<label for="email"><b>Email</b></label>
+				<input type="text"  placeholder="Enter Email"  name="email" required>  <br />  <br />
+				
+				<label for="email"><b>Password</b></label>
+				<input type="text" placeholder="Enter Password"  name="password" required>  <br />  <br />
+				
+				
+				
+				<input type="submit" value="Sign Up" />
+		</div>		
+		</form>
+						
+</body>
+</html>
