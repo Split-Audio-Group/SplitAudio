@@ -1,0 +1,59 @@
+<!doctype>
+
+<html>
+<head>
+<style>
+
+.main-component {
+	margin-left: 17%;
+	padding: 20px;
+}
+
+h3 {
+	font-size: 30px;
+}
+
+ .input-trim {
+ 	margin: 5px;
+ }
+
+
+</style>
+</head>
+    <header>
+    <h1>Edit page</h2>
+    <link rel="stylesheet" href="SplitAudio.css">
+    </header>
+    
+    <body>
+    
+    </body>
+    <div class="main-component">
+    	<h3>Upload audio file</h3>
+    	<form action="uploadServlet" method="post" enctype="multipart/form-data">
+  			<label for="audio-file">Select an audio file:</label>
+  			<input type="file" id="audio-file" name="audio-file">
+  			<button type="submit">Upload</button>
+		</form>
+    	
+        <h3 >Trim audio file</h3>
+        <form  action="Trim" method ="">
+            Trim from <input class="input-trim" type="text" name="trimFrom" value=""> second<br>
+            To <input class="input-trim" type="text" name="trimToWhen" value=""> second
+            
+            <input type="submit" value="Trim">
+        </form>
+        
+        <h3>Split audio file</h3>
+        <form action="Split" method="">
+            Split on <input type="text" name="splitWhen" value="">
+            <input type="submit" value="Split">
+        </form>
+        
+        <h3>Level audio file</h3>
+        <button class="levelbutton">Level audio</button>
+    </div>
+    
+    <footer>
+    </footer>
+</html>
