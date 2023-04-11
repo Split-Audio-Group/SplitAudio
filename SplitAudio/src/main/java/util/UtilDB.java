@@ -241,5 +241,10 @@ public class UtilDB {
 			   session.close();
 		   }
 	}
+
+	public static String userNameById(Integer getuid) {
+		// TODO Auto-generated method stub
+		return null;//comment
+	}
    
 }
