@@ -1,4 +1,10 @@
-/util/
-/datamodel/
+/DatabaseDelete.class
+/DatabaseInsert.class
+/DatabaseSearch.class
 /Login.class
+/MyServletDB.class
+/MyServletHibernate.class
 /dataModification/
+/datamodel/
+/util/
+/Upload.class

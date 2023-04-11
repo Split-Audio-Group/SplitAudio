@@ -1,4 +1,4 @@
-package dataModification;
+ package dataModification;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Trim
+ * Servlet implementation class Split
  */
-@WebServlet("/Trim")
-public class Trim extends HttpServlet {
+@WebServlet("/Split")
+public class Split extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Trim() {
+    public Split() {
         super();
         // TODO Auto-generated constructor stub
     }

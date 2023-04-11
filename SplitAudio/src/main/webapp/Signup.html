@@ -11,8 +11,8 @@
 }
 
 .loginbox {
-	width: 300px;
-	height: 480px;
+	width: 400px;
+	height: auto;
 	background: #ffffff;
 	color: #000000;
 	top: 50%;
@@ -79,7 +79,6 @@
 {
 	color: #404040;
 }
-		
 		</style>
 	</head>
 	
@@ -100,21 +99,25 @@
 		</header>
 		
 		<div class="loginbox">
-			<h1>Log In Here</h1>
+			<h1>Sign Up</h1>
 			
-				<form action="login" method="post">
-					<p>Username</p>
-					<input type="text" name="username" placeholder="Enter Username">
-					<p>Password</p>
-					
-					<input type="Password" name="password" placeholder="Enter Password">
-					<input type="submit" name="" value="Login">
-					<p style ="text-align: center;"> or</p> <br>
-				</form>
-			
-			<form action="SignUp.html" method="post">
-				
+			<form action="Signup" method="post">
+				<p>Username</p>
+				<input type="text" name="username" placeholder="Enter Username">
+				<p>Display Name</p>
+				<input type="text" name="displayName" placeholder="Enter Display Name">
+				<p>Email</p>
+				<input type="text"  placeholder="Enter Email"  name="email" required>
+				<p>Password</p>
+				<input type="Password" name="password" placeholder="Enter Password">
+				<input type="checkbox" onclick="myFunction()">
 				<input type="submit" name="" value="Sign Up">
+				<p style ="text-align: center;"> or</p> <br>
+			</form>
+			
+			<form action="LogIn.html" method="post">
+				
+				<input type="submit" name="" value="Log In">
 			</form>
 			
 	</div>
