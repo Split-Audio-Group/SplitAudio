@@ -21,7 +21,7 @@ public class Login extends HttpServlet implements Info {
    }
 
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      String username = request.getParameter("userName").trim();
+      String username = request.getParameter("username").trim();
       String password = request.getParameter("password").trim();
 
       response.setContentType("text/html");
@@ -44,6 +44,7 @@ public class Login extends HttpServlet implements Info {
          }else {
         	 UtilDB.getSession().setUser(listUsers.get(0));
         	 display(listUsers, out);
+        	 out.println("<a href=/" + projectName + "/" + home + ">Home</a> <br>");
          }
       } else {
          //listEmployees = UtilDBWilliams.listUsers();

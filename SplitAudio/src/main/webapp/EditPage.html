@@ -2,137 +2,158 @@
 
 <html>
 <head>
-<style>
-
-.main-component {
-	margin-left: 17%;
-	padding: 20px;
-}
-
-h3 {
-	font-size: 30px;
-}
-
- .input-trim {
- 	margin: 5px;
- }
- 
- label {
- font-size: 20px;
- }
- 
- input {
- font-size: 20px;
- }
-
-	a{
-		color:inherit;
-		text-decoration:none;
-	}
-	a:hover{
-		color:grey
-	}
-	body{
-	background-color:rgb(65, 65, 65);
-	}
-	#page_wrapper{
-		width:100%;
-		max-width:1280px;
-		margin: 0 auto;
-	}
-	header {
-		background-color: rgb(65, 65, 65);
-		color: white;
-		text-align: center;
-		padding: 25px;
-		font-family:Georgia;
-		border-top: 2px solid black;
-		border-bottom: 2px solid black;
+	<style>
+		.loginbox p{
+			margin: 0;
+			padding: 0;
+			font-weight: bold;
+		}
 		
-	}
-	footer{
-		background-color: rgb(65, 65, 65);
-		text-align: center;
-		padding: 25px;
-		border-top: 2px solid black;
-		border-bottom: 2px solid black;
-		font-family: Georgia;
-		font-size:58px;
-	}
-	nav {
-		height:58px;
-	}
-	nav ul {
-		padding:0;
-		display:flex;
-		justify-content:space-between;
-		list-style-type:none;
-	}
-	nav li a{
-	
-		font-size:24px;
-	}
-	nav li a:hover{
-		color:grey
-	}
-	.middle{
-		width:90%;
-		height:700px;
-		margin-left:30px;
-		margin-right:30px;
-		text-align:center;
-		background-color:#959595;
-		border-left: 1px solid black;
-		border-right: 1px solid black;
-		font-size:68px;
-	}
-	.displaybox{
-		font-size:20px;
-		margin-top:5%;
-		margin-left:20%;
-		margin-right:20%;
-		float: left;
-		width:60%;
-		height:60%;
-		border: 2px solid black;
-	}
-</style>
+		.loginbox {
+			width: 400px;
+			height: auto;
+			background: #ffffff;
+			color: #000000;
+			top: 50%;
+			left: 50%;
+			position: relative;
+			transform: translate(-50%, 2.75%);
+			box-sizing: border-box;
+			padding: 50px 50px;
+		}
+		
+		.login{
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+			position: absolute;
+			top: -50px;
+			left: calc(50% - 50px);
+		
+		
+		}
+		
+		.loginbox input{
+			width: 100%;
+			margin-bottom: 20px;
+		}
+		
+		.loginbox input[type="text"], input[type="password"], input[type="file"]
+		{
+			border: none;
+			border-bottom: 1px solid #909090;
+			background: transparent;
+			outline: none;
+			height: 40px;
+			color: #000000;
+			font-size: 14px;
+		}
+		
+		.loginbox input[type="submit"]
+		{
+			border: none;
+			outline: none;
+			height: 40px;
+			background: #909090;
+			color: #ffffff;
+			font-size: 18px;
+			border-radius: 20px;
+		}
+		
+		.loginbox input[type="submit"]:hover
+		{
+			cursor: pointer;
+			background: #909090;
+			color: #000000;
+		}
+		
+		.loginbox a{
+			text-decoration: none;
+			font-size: 12px;
+			line-height: 18px;
+			color: white;
+		}
+		
+		.loginbox a:hover
+		{
+			color: #404040;
+		}
+		.main-component {
+			margin-left: 17%;
+			padding: 20px;
+		}
+		
+		h3 {
+			font-size: 30px;
+		}
+		
+		 .input-trim {
+		 	margin: 5px;
+		 }
+		 
+		 label {
+		 	font-size: 20px;
+		 }
+		 
+		 input {
+		 	font-size: 20px;
+		 }
+	</style>
+	<link rel="stylesheet" href="SplitAudio.css">
+	<title>Split Audio</title>
+	<link rel="icon" type="image/x-icon" href="Sound_Splice_Logo.svg">
 </head>
-    <header>
-    <h1>Edit page</h2>
-    <link rel="stylesheet" href="SplitAudio.css">
-    </header>
+
+<body>
+	<header>
+		<div id="page_wrapper">
+			<img src="Sound_Splice_Logo.svg" height="200" width="150"/>
+			<nav>	
+				<ul>
+					<!--Home  Add  Edit Account-->
+					<li><a href="Home.html">Home</a></li>
+					<li><a href="Files.html">Files</a></li>
+					<li><a href="Edit.html">Edit</a></li>
+					<li><a href="Account.html">Account</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
     
-    <body>
-    <div class="main-component">
-    	<h3>Upload audio file</h3>
-    	<form action="uploadServlet" method="post" enctype="multipart/form-data">
-  			<label for="audio-file">Select an audio file:</label>
-  			<input type="file" id="audio-file" name="audio-file">
-  			<button type="submit">Upload</button>
-		</form>
-    	
-        <h3 >Trim audio file</h3>
-        <form  action="Trim" method ="">
-            Trim from <input class="input-trim" type="text" name="trimFrom" value=""> second<br>
-            To <input class="input-trim" type="text" name="trimToWhen" value=""> second
-            
-            <input type="submit" value="Trim">
-        </form>
-        
-        <h3>Split audio file</h3>
-        <form action="Split" method="">
-            Split on <input type="text" name="splitWhen" value="">
-            <input type="submit" value="Split">
-        </form>
-        
-        <h3>Level audio file</h3>
-        <button class="levelbutton">Level audio</button>
+    <div id="page_wrapper">
+	    <div class="loginbox">
+	    	<h3>Upload audio file</h3>
+	    	<form action="uploadServlet" method="post" enctype="multipart/form-data">
+	  			<label for="audio-file">Select an audio file:</label>
+	  			<input type="file" id="audio-file" name="audio-file">
+	  			<input type="submit" value="Upload">
+			</form>
+	    	
+	        <h3>Trim audio file</h3>
+	        <form  action="Trim" method ="post">
+	            Trim from <input class="input-trim" type="text" name="trimFrom" placeholder="seconds"> <br>
+	            To <input class="input-trim" type="text" name="trimToWhen" placeholder="seconds">
+	            
+	            <input type="submit" value="Trim">
+	        </form>
+	        
+	        <h3>Split audio file</h3>
+	        <form action="Split" method="post">
+	            Split at <input type="text" name="splitWhen" placeholder="seconds">
+	            <input type="submit" value="Split">
+	        </form>
+	        
+	        <h3>Level audio file</h3>
+	        <button class="levelbutton">Level audio</button>
+	    </div>
+	    <br style="clear:both" />
+    
     </div>
-    
-    </body>
     
     
     <footer>
-    </footer>
+		<div id="page_wrapper" class="footer_text">
+			<img src="Sound_Splice_Logo.svg" height="200" width="150"/>
+		</div>
+	</footer>
 </html>

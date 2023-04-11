@@ -1,6 +1,103 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<style>
+		.loginbox p{
+			margin: 0;
+			padding: 0;
+			font-weight: bold;
+		}
+		
+		.loginbox {
+			width: 400px;
+			height: auto;
+			background: #ffffff;
+			color: #000000;
+			top: 50%;
+			left: 50%;
+			position: relative;
+			transform: translate(-50%, 2.75%);
+			box-sizing: border-box;
+			padding: 50px 50px;
+		}
+		
+		.login{
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+			position: absolute;
+			top: -50px;
+			left: calc(50% - 50px);
+		
+		
+		}
+		
+		.loginbox input{
+			width: 100%;
+			margin-bottom: 20px;
+		}
+		
+		.loginbox input[type="text"], input[type="password"], input[type="file"]
+		{
+			border: none;
+			border-bottom: 1px solid #909090;
+			background: transparent;
+			outline: none;
+			height: 40px;
+			color: #000000;
+			font-size: 14px;
+		}
+		
+		.loginbox input[type="submit"]
+		{
+			border: none;
+			outline: none;
+			height: 40px;
+			background: #909090;
+			color: #ffffff;
+			font-size: 18px;
+			border-radius: 20px;
+		}
+		
+		.loginbox input[type="submit"]:hover
+		{
+			cursor: pointer;
+			background: #909090;
+			color: #000000;
+		}
+		
+		.loginbox a{
+			text-decoration: none;
+			font-size: 12px;
+			line-height: 18px;
+			color: white;
+		}
+		
+		.loginbox a:hover
+		{
+			color: #404040;
+		}
+		.main-component {
+			margin-left: 17%;
+			padding: 20px;
+		}
+		
+		h3 {
+			font-size: 30px;
+		}
+		
+		 .input-trim {
+		 	margin: 5px;
+		 }
+		 
+		 label {
+		 	font-size: 20px;
+		 }
+		 
+		 input {
+		 	font-size: 20px;
+		 }
+	</style>
 		<meta charset="ISO-8859-1">
 		<link rel="stylesheet" href="SplitAudio.css">
 		<title>Files</title>
@@ -15,32 +112,38 @@
 					<!--Home  Add  Edit Account-->
 					<li><a href="Home.html">Home</a></li>
 					<li><a href="Files.html">Files</a></li>
-					<li><a href="Edit.html">Edit</a></li>
+					<li><a href="EditPage.html">Edit</a></li>
 					<li><a href="Account.html">Account</a></li>
 				</ul>
 			</nav>
 		</div>
 	</header>
-	<div id="page_wrapper" class="middle">
-		<div class = "form-template">
-			<h1>Log In Here</h1>
-			
-				<form action="login" method="post">
-					<p>Username</p>
-					<input type="text" name="username" placeholder="Enter Username">
-					<p>Password</p>
-					
-					<input type="Password" name="password" placeholder="Enter Password">
-					<input type="submit" name="" value="Login">
-					<p style ="text-align: center;"> or</p> <br>
-				</form>
-			
+	<div id="page_wrapper">
+		<div class="loginbox" >
+			<h1>Account Options</h1>
 			<form action="SignUp.html" method="post">
-				
-				<input type="submit" name="" value="Sign Up">
+				<input type="submit" name="" value="My Account">
 			</form>
 			
+			<form action="LogIn.html" method="post">
+				<input type="submit" name="" value="Login">
+			</form>
+			
+			<form action="SignUp.html" method="post">
+				<input type="submit" name="" value="Sign Up">
+			</form>
+			<form action="Files" method="POST">	
+				<select name="options">
+					<option value="my">My Files</option>
+					<option value="public">Public Files</option>
+					<option value="new">New Files</option>
+				</select>			
+				<input type="submit" value="View Messages" />
+			</form>
+			
+			
 		</div>
+		<br style="clear:both" /> <!-- This ensures that the displaybox is within the middle box -->
 	</div>
 	
 	<footer>
