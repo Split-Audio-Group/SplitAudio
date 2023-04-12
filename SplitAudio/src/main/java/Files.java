@@ -38,37 +38,35 @@ public class Files extends HttpServlet implements Info {
     		  out.println("Log in to see your messages <br>");
     		  out.println("<a href=/" + projectName + "/" + logIn + ">Login</a> <br>"); 
     	  }else {
-    		 List<Messages> listMessages = null;
- 		     listMessages = UtilDBWilliams.listMessagesByUser(user);
+    		  System.out.print("Made it to my");
+    		  List<Audio_Files> listMessages = null;
+ 		     listMessages = UtilDB.listFilesByUser(user);
+ 		     
  		     display(listMessages, out);
     	  }
-      }else if(option.equals("all")) {
-		  List<Messages> listMessages = null;
-		  listMessages = UtilDBWilliams.listMessages();
+      }else if(option.equals("public")) {
+    	  System.out.print("Made it to public");
+    	  List<Audio_Files> listMessages = null;
+		  listMessages = UtilDB.listFiles();
 	      display(listMessages, out);
-      }else if(option.equals("new")) {
-		  List<Messages> listMessages = null;
-	      listMessages = UtilDBWilliams.listMessagesToday();
-	      display(listMessages, out);
-   }
+      }
       
       out.println("</ul>");
-      out.println("<a href=/" + projectName + "/" + searchMessage + ">New Filter</a> <br>");
+      out.println("<a href=/" + projectName + "/" + home + ">Home</a> <br>");
       out.println("</body></html>");
    }
 
-   void display(List<Messages> listMessages, PrintWriter out) {
-      for (Messages message : listMessages) {
-         System.out.println("[DBG] " + message.getId() + ", " //
-               + UtilDBWilliams.userNameById(message.getUser_id()) + ", " //
-               + message.getText());
+   void display(List<Audio_Files> listMessages, PrintWriter out) {
+      for (Audio_Files file : listMessages) {
+         System.out.println("[DBG] " + file.getId() + ", " //
+               + UtilDB.userNameById(file.getuid()) + ", " //
+               + file.getName());
 
-         out.println("<li>" + message.getId() + ", "
-                 + UtilDBWilliams.userNameById(message.getUser_id()) + ", "
-                 + message.getDate() + "</li>"
+         out.println("<li>" + file.getId() + ", "
+                 + UtilDB.userNameById(file.getuid()) + ", "
+                 + file.getSize() + "</li>"
                  + "<ul><li>"
-                 + message.getText()
-                 + "</li></ul>");
+                 );
       }
    }
 

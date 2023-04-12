@@ -44,6 +44,7 @@ public class Login extends HttpServlet implements Info {
          }else {
         	 UtilDB.getSession().setUser(listUsers.get(0));
         	 display(listUsers, out);
+        	 System.out.print(UtilDB.getSession().getCurrentUser());
         	 out.println("<a href=/" + projectName + "/" + home + ">Home</a> <br>");
          }
       } else {

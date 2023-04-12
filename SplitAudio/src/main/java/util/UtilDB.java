@@ -165,7 +165,9 @@ public class UtilDB {
 	         List<?> users = session.createQuery("FROM Audio_Files").list();
 	         for (Iterator<?> iterator = users.iterator(); iterator.hasNext();) {
 	        	 Audio_Files file = (Audio_Files) iterator.next();
-	            resultList.add(file);
+	        	 if (file.getpub()) {
+		               resultList.add(file);
+		         }
 	         }
 	         tx.commit();
 	      } catch (HibernateException e) {
@@ -188,9 +190,9 @@ public class UtilDB {
 		         tx = session.beginTransaction();
 		         List<?> users = session.createQuery("FROM Audio_Files").list();
 		         for (Iterator<?> iterator = users.iterator(); iterator.hasNext();) {
-		        	 Audio_Files user = (Audio_Files) iterator.next();
-		            if (user.getName().startsWith(keyword)) {
-		               resultList.add(user);
+		        	 Audio_Files file = (Audio_Files) iterator.next();
+		            if (file.getName().startsWith(keyword)) {
+		               resultList.add(file);
 		            }
 		         }
 		         tx.commit();
@@ -203,6 +205,31 @@ public class UtilDB {
 		      }
 		      return resultList;
 		   }
+	public static List<Audio_Files> listFilesByUser(User user) {
+	      List<Audio_Files> resultList = new ArrayList<Audio_Files>();
+
+	      Session session = getSessionFactory().openSession();
+	      Transaction tx = null;
+
+	      try {
+	         tx = session.beginTransaction();
+	         List<?> messages = session.createQuery("FROM Messages").list();
+	         for (Iterator<?> iterator = messages.iterator(); iterator.hasNext();) {
+	        	 Audio_Files file = (Audio_Files) iterator.next();
+	            if (file.getuid().equals(user.getId())||file.getpub()){
+	               resultList.add(file);
+	            }
+	         }
+	         tx.commit();
+	      } catch (HibernateException e) {
+	         if (tx != null)
+	            tx.rollback();
+	         e.printStackTrace();
+	      } finally {
+	         session.close();
+	      }
+	      return resultList;
+	   }
 	
 	
 	public static void createFile(Integer uid, String name, String path, Double size, Boolean pub) {
@@ -242,9 +269,30 @@ public class UtilDB {
 		   }
 	}
 
-	public static String userNameById(Integer getuid) {
+	public static String userNameById(Integer userId) {
 		// TODO Auto-generated method stub
-		return null;//comment
+		String userName = "";
+	      Session session = getSessionFactory().openSession();
+	      Transaction tx = null;
+
+	      try {
+	         tx = session.beginTransaction();
+	         List<?> users = session.createQuery("FROM Users").list();
+	         for (Iterator<?> iterator = users.iterator(); iterator.hasNext();) {
+	            User user = (User) iterator.next();
+	            if (user.getId().equals(userId)){
+	               userName = user.getName();
+	            }
+	         }
+	         tx.commit();
+	      } catch (HibernateException e) {
+	         if (tx != null)
+	            tx.rollback();
+	         e.printStackTrace();
+	      } finally {
+	         session.close();
+	      }
+	      return userName;
 	}
    
 }

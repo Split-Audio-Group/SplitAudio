@@ -82,4 +82,8 @@ public class User {
   public void setPassword(String password) {
 	  this.password = password;
   }
+  
+  public String toString(){
+      return "Username" + username + "Name" + display_name + "Email" + email ;
+  }
 }
