@@ -70,7 +70,7 @@ public class Trim extends HttpServlet {
 			System.out.println(e);
 		}
 		catch (IOException e) {
-			
+			System.out.println(e);
 		}
 		
 	}

@@ -36,7 +36,7 @@ public class Split extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String filename = request.getParameter("audio-file").trim();
 		String segmentDuration = request.getParameter("splitWhen").trim();
-		
+		 
 		System.out.println(filename);
 		
 		int segmentDurationInSeconds = Integer.parseInt(segmentDuration);
