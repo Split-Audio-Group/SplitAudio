@@ -21,7 +21,7 @@ public class Audio_Files {
 	   @Column(name = "NAME")
 	   private String name;
 
-	   @Column(name = "FILEPATH")
+	   @Column(name = "FILE_PATH")
 	   private String path;
 	   
 	   @Column(name = "SIZE")
