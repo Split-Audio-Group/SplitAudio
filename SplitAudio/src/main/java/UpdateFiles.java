@@ -175,13 +175,23 @@ public class UpdateFiles extends HttpServlet {
 	            + "	</header>\r\n"
 	            + "	<div id=\"page_wrapper\">");
 	      out.println("");
-	      Audio_Files chosenFile = UtilDB.listFiles(selected).get(0);
-	      System.out.println(chosenFile.getName());
+	      
 	      if(selected != null) {
+	    	  Audio_Files chosenFile = UtilDB.listFiles(selected).get(0);
+		      System.out.println(chosenFile.getName());
 	    	  //UtilDB.getSession().setFile();
 	      }
 	      if(deleted != null) {
+	    	  Audio_Files chosenFile = UtilDB.listFiles(deleted).get(0);
+		      System.out.println(chosenFile.getName());
 	    	  UtilDB.deleteFile(chosenFile.getId());
+	    	  out.println("\n<div class=\"loginbox\">" 
+	    			  + "<h1>"
+	    			  + chosenFile.getName() + " has been successfully deleted."
+	    			  + "</h1>"
+	                  + "</div>"
+	                  + "<br>"
+	                  );
 	      }
 	      
 	      out.println("");

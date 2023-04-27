@@ -191,7 +191,7 @@ public class UtilDB {
 		         List<?> users = session.createQuery("FROM Audio_Files").list();
 		         for (Iterator<?> iterator = users.iterator(); iterator.hasNext();) {
 		        	 Audio_Files file = (Audio_Files) iterator.next();
-		            if (file.getName().startsWith(keyword)) {
+		            if (file.getName().contains(keyword)) {
 		               resultList.add(file);
 		            }
 		         }
