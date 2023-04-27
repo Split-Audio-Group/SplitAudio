@@ -15,6 +15,8 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import util.UtilDB;
+
 /**
  * Servlet implementation class Split
  */
@@ -34,16 +36,17 @@ public class Split extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String filename = request.getParameter("audio-file").trim();
+//		String filename = UtilDB.getSession().getCurrentFile();
 		String segmentDuration = request.getParameter("splitWhen").trim();
 		 
-		System.out.println(filename);
+		//System.out.println(filename);
 		
 		int segmentDurationInSeconds = Integer.parseInt(segmentDuration);
 		
 		System.out.println(segmentDurationInSeconds);
 		try {
-			File inputFile = new File(filename);
+			File inputFile = UtilDB.getSession().getCurrentFile();
+			
 			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(inputFile);
 	        AudioFormat format = audioInputStream.getFormat();
 
@@ -55,12 +58,16 @@ public class Split extends HttpServlet {
 	        int bytesRead = 0;
 	        byte[] audioBuffer = new byte[segmentLength];
 
+	        File outputFile = new File(inputFile.getParentFile(), "segment_" + segmentNumber + ".wav");
 	        while ((bytesRead = audioInputStream.read(audioBuffer)) != -1) {
-	            File outputFile = new File(inputFile.getParentFile(), "segment_" + segmentNumber + ".wav");
+	            
 	            AudioInputStream segmentAudioInputStream = new AudioInputStream(audioInputStream, format, bytesRead);
 	            AudioSystem.write(segmentAudioInputStream, AudioFileFormat.Type.WAVE, outputFile);
 	            segmentNumber++;
 	        }
+	        
+	        request.setAttribute("outputFile", outputFile);
+	        request.getRequestDispatcher("src/main/webapp/splitJSP.jsp").forward(request, response);
 	        
 	        audioInputStream.close();
 			
@@ -69,7 +76,7 @@ public class Split extends HttpServlet {
 			System.out.println(e);
 		}
 		catch (IOException e) {
-			
+			System.out.println(e);
 		}
 	}
 
