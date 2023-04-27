@@ -277,7 +277,7 @@ public class UtilDB {
 
 	      try {
 	         tx = session.beginTransaction();
-	         List<?> users = session.createQuery("FROM Users").list();
+	         List<?> users = session.createQuery("FROM User").list();
 	         for (Iterator<?> iterator = users.iterator(); iterator.hasNext();) {
 	            User user = (User) iterator.next();
 	            if (user.getId().equals(userId)){

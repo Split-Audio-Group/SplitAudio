@@ -1,0 +1,6 @@
+1,Guest,NULL,NULL,password
+2,Mystery,Test,email@email,password
+9,test ,test ,testemail@test.com,test
+10,testing,testing,testing@email.com,testing
+11,userA,Auser,userA@email.com,sillyPassword
+12,SQLBreaker,SQL,SQL@localhost,sqlpassword

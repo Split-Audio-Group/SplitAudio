@@ -15,6 +15,8 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import util.UtilDB;
+
 /**
  * Servlet implementation class Split
  */
@@ -43,7 +45,7 @@ public class Split extends HttpServlet {
 		
 		System.out.println(segmentDurationInSeconds);
 		try {
-			File inputFile = new File(filename);
+			File inputFile = UtilDB.getSession().getCurrentFile();
 			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(inputFile);
 	        AudioFormat format = audioInputStream.getFormat();
 

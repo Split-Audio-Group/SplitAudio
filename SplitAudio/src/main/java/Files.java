@@ -24,8 +24,8 @@ public class Files extends HttpServlet implements Info {
 
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
-      String title = "Messages";
-      String docType = "<!doctype html public \"-//w3c//dtd html 4.0 transitional//en\">"; //
+      //String title = "Messages";
+      String docType = "<!doctype html>"; //
       out.println(docType + //
             "\r\n"
             + "<html>\r\n"
@@ -130,7 +130,7 @@ public class Files extends HttpServlet implements Info {
             + "		<meta charset=\"ISO-8859-1\">\r\n"
             + "		<link rel=\"stylesheet\" href=\"SplitAudio.css\">\r\n"
             + "		<title>Files</title>\r\n"
-            + "		<link rel=\"icon\" type=\"image/x-icon\" href=\"Sound_Splice_Logo.svg\">\r\n"
+            + "		<link rel=\"icon\" type=\"image/x-icon\" href=\"Sound_Splice_Icon.svg\">\r\n"
             + "	</head>\r\n"
             + "<body>\r\n"
             + "	<header>\r\n"
@@ -148,7 +148,7 @@ public class Files extends HttpServlet implements Info {
             + "		</div>\r\n"
             + "	</header>\r\n"
             + "	<div id=\"page_wrapper\">");
-      out.println("<ul>");
+      out.println("");
       if(option.equals("my")) {
     	  User user = UtilDB.getSession().getCurrentUser();
     	  if(user == null) {
@@ -161,29 +161,38 @@ public class Files extends HttpServlet implements Info {
  		     
  		     display(listMessages, out);
     	  }
-      }else if(option.equals("public")) {
+      }else{
     	  System.out.print("Made it to public");
     	  List<Audio_Files> listMessages = null;
 		  listMessages = UtilDB.listFiles();
 	      display(listMessages, out);
       }
       
-      out.println("</ul>");
+      out.println("");
       out.println("</div>");
       out.println("</body></html>");
    }
 
    void display(List<Audio_Files> listMessages, PrintWriter out) {
-      for (Audio_Files file : listMessages) {
+      out.println("<form action=\"UpdateFiles\" method=\"POST\">");
+	   for (Audio_Files file : listMessages) {
          System.out.println("[DBG] " + file.getId() + ", " //
                + UtilDB.userNameById(file.getuid()) + ", " //
                + file.getName());
 
-         out.println("<li>/n<div class=\"loginbox\" >" + file.getName() + ". Made by: "
+         out.println("\n<div class=\"loginbox\">" + file.getName() + ". Made by: "
                  + UtilDB.userNameById(file.getuid()) + ". Located at: "
-                 + file.getFilepath() + "</div>/n</li>"
+                 + file.getFilepath() 
+                 + "<br>"
+                 + "<div>"
+                 + "<button type:\"radio\" name = \"select\" value = \""+ file.getName()+"\"/>Select"
+                 + "<button type:\"radio\" name = \"delete\" value = \""+ file.getName()+"\"/>Delete"
+                 + "</div>"
+                 + "</div>"
+                 + "<br>"
                  );
       }
+	  out.println("</form>");
    }
 
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
