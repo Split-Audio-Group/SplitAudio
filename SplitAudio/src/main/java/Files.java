@@ -155,14 +155,14 @@ public class Files extends HttpServlet implements Info {
     		  out.println("Log in to see your messages <br>");
     		  out.println("<a href=/" + projectName + "/" + logIn + ">Login</a> <br>"); 
     	  }else {
-    		  System.out.print("Made it to my");
+    		  System.out.println("Made it to my files.");
     		  List<Audio_Files> listMessages = null;
  		     listMessages = UtilDB.listFilesByUser(user);
  		     
  		     display(listMessages, out);
     	  }
       }else{
-    	  System.out.print("Made it to public");
+    	  System.out.println("Made it to public files.");
     	  List<Audio_Files> listMessages = null;
 		  listMessages = UtilDB.listFiles();
 	      display(listMessages, out);

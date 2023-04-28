@@ -103,7 +103,9 @@ public class Audio_Files {
 			this.pub = pub;
 		}
 		
-		
+		public String toString(){
+		      return "UserId: " + uid + " - Name: " + name + " - Path: " + path + " - Size: " + size + " - Public: " + pub;
+		 }
 		
 		
 		

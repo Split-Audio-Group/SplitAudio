@@ -84,6 +84,6 @@ public class User {
   }
   
   public String toString(){
-      return "Username" + username + "Name" + display_name + "Email" + email ;
+      return "Username: " + username + "- Name: " + display_name + "- Email: " + email ;
   }
 }

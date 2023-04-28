@@ -3,6 +3,7 @@
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.io.File;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -179,7 +180,15 @@ public class UpdateFiles extends HttpServlet {
 	      if(selected != null) {
 	    	  Audio_Files chosenFile = UtilDB.listFiles(selected).get(0);
 		      System.out.println(chosenFile.getName());
-	    	  //UtilDB.getSession().setFile();
+	    	  File file = new File(chosenFile.getFilepath());
+	    	  UtilDB.getSession().setFile(file);
+	    	  out.println("\n<div class=\"loginbox\">" 
+	    			  + "<h1>"
+	    			  + chosenFile.getName() + " has been successfully set as the current file."
+	    			  + "</h1>"
+	                  + "</div>"
+	                  + "<br>"
+	                  );
 	      }
 	      if(deleted != null) {
 	    	  Audio_Files chosenFile = UtilDB.listFiles(deleted).get(0);
