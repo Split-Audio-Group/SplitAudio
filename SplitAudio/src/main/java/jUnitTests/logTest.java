@@ -25,6 +25,7 @@ class logTest {
 	void testLog(int userID, int fileID, int expectedUserID, int expectedFileID) {
 		userList = GenerateArrays.generateUsers();
 		fileList = GenerateArrays.generateFiles();
+		
 	      
 	}
 	
