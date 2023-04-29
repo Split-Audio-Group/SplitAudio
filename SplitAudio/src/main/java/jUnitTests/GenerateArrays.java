@@ -46,17 +46,17 @@ public class GenerateArrays {
 			ArrayList<Audio_Files> list = new ArrayList<Audio_Files>();
 			while (sc.hasNext()){  //returns a boolean value  
 				String id = sc.next(); 
-				System.out.println(id);
+				//System.out.println(id);
 				String uid = sc.next();
-				System.out.println(uid);
+				//System.out.println(uid);
 				String name = sc.next();
-				System.out.println(name);
+				//System.out.println(name);
 				String path = sc.next();
-				System.out.println(path);
+				//System.out.println(path);
 				String size = sc.next();
-				System.out.println(size);
+				//System.out.println(size);
 				String pub = sc.next();
-				System.out.println(pub);
+				//System.out.println(pub);
 				list.add(new Audio_Files(Integer.parseInt(id), Integer.parseInt(uid), name, path, Double.parseDouble(size), pub.equals("1")));
 				
 			}   
