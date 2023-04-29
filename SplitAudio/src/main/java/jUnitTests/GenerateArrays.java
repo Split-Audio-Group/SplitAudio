@@ -20,8 +20,14 @@ public class GenerateArrays {
 				String username = sc.next();
 				//System.out.println("name:" + username);
 				String displayName = sc.next();
+				if(displayName.equals("NULL")) {
+					displayName = null;
+				}
 				//System.out.println("display:" + displayName);
 				String email = sc.next();
+				if(email.equals("NULL")) {
+					email = null;
+				}
 				//System.out.println("email:" + email);
 				String password = sc.next();
 				//System.out.println("password:" + password);

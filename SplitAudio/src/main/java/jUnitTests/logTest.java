@@ -28,14 +28,14 @@ class logTest {
 		fileList = GenerateArrays.generateFiles();
 		User selectedUser = null;
 		Audio_Files selectedFile = null;
-		System.out.println("Pass 1:");
+		//System.out.println("Pass 1:");
 		for(User user : userList) {
 			if(user.getId() == userID) {
 				testedLog.setUser(user);
 				selectedUser = user;
 			}
 		}
-		System.out.println("\tExpected: " + selectedUser +"\n\tActual: " + testedLog.getCurrentUser());
+		//System.out.println("\tExpected: " + selectedUser +"\n\tActual: " + testedLog.getCurrentUser());
 		Assert.assertEquals(selectedUser, testedLog.getCurrentUser());
 		
 		for(Audio_Files file : fileList) {
@@ -44,19 +44,19 @@ class logTest {
 				selectedFile = file;
 			}
 		}
-		System.out.println("\tExpected: " + new File(selectedFile.getFilepath()) +"\n\tActual: " + testedLog.getCurrentFile());
+		//System.out.println("\tExpected: " + new File(selectedFile.getFilepath()) +"\n\tActual: " + testedLog.getCurrentFile());
 		Assert.assertEquals(new File(selectedFile.getFilepath()), testedLog.getCurrentFile());
-		System.out.println("\tExpected: " + selectedUser +"\n\tActual: " + testedLog.getCurrentUser());
+		//System.out.println("\tExpected: " + selectedUser +"\n\tActual: " + testedLog.getCurrentUser());
 		Assert.assertEquals(selectedUser, testedLog.getCurrentUser());
 		
-		System.out.println("Pass 2:");
+		//System.out.println("Pass 2:");
 		for(User user : userList) {
 			if(user.getId() == newUser) {
 				testedLog.setUser(user);
 				selectedUser = user;
 			}
 		}
-		System.out.println("\tExpected: " + selectedUser +"\n\tActual: " + testedLog.getCurrentUser());
+		//System.out.println("\tExpected: " + selectedUser +"\n\tActual: " + testedLog.getCurrentUser());
 		Assert.assertEquals(selectedUser, testedLog.getCurrentUser());
 		
 		for(Audio_Files file : fileList) {
@@ -65,11 +65,11 @@ class logTest {
 				selectedFile = file;
 			}
 		}
-		System.out.println("\tExpected: " + new File(selectedFile.getFilepath()) +"\n\tActual: " + testedLog.getCurrentFile());
+		//System.out.println("\tExpected: " + new File(selectedFile.getFilepath()) +"\n\tActual: " + testedLog.getCurrentFile());
 		Assert.assertEquals(new File(selectedFile.getFilepath()), testedLog.getCurrentFile());
-		System.out.println("\tExpected: " + selectedUser +"\n\tActual: " + testedLog.getCurrentUser());
+		//System.out.println("\tExpected: " + selectedUser +"\n\tActual: " + testedLog.getCurrentUser());
 		Assert.assertEquals(selectedUser, testedLog.getCurrentUser());
-	    System.out.println();
+	    //System.out.println();
 	}
 	
 	
