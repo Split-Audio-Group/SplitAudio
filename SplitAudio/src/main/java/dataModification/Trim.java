@@ -16,6 +16,8 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import util.UtilDB;
+
 /**
  * Servlet implementation class Trim
  */
@@ -35,7 +37,7 @@ public class Trim extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String filename = request.getParameter("audio-file").trim();
+		
 		String startTime = request.getParameter("trimFrom").trim();
 		String endTime = request.getParameter("trimToWhen").trim();
 		
@@ -45,13 +47,12 @@ public class Trim extends HttpServlet {
 		float endTimeInSeconds = Float.parseFloat(endTime);
 	
 		// print them for debug
-		System.out.println("Selected file: " + filename);
 		System.out.println("Trim from: " + startTimeInSeconds);
 		System.out.println("To: " + endTimeInSeconds);
 		
 		
 		try {
-			File inputFile = new File(filename);
+			File inputFile = UtilDB.getSession().getCurrentFile();
 			File outputFile = new File("sampleOutputFile.wav");
 			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(inputFile);
 	        AudioFormat format = audioInputStream.getFormat();

@@ -72,7 +72,9 @@ public class Upload extends HttpServlet {
             
             
             File file = new File("C:\\audio_files\\" + filename); // Modify this path to match the directory where you want to save the file
+            UtilDB.getSession().setFile(file);
             filePart.write(file.getAbsolutePath());
+            
             
          // Redirect back to the form with a success message
             response.sendRedirect(request.getContextPath() + "/EditPage.html?success=true");
