@@ -3,6 +3,7 @@ package dataModification;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -70,8 +71,23 @@ public class Split extends HttpServlet {
 	        
 	        
 	        //jump to the jsp file for users to download a file
-	        request.setAttribute("outputFile", outputFile);
-	        request.getRequestDispatcher("src/main/webapp/download.jsp").forward(request, response);
+//	        request.setAttribute("outputFile", outputFile);
+//	        request.getRequestDispatcher("SplitAudio/src/main/webapp/download.jsp").forward(request, response);
+	        
+	        response.setContentType("text/html");
+	        PrintWriter out = response.getWriter();
+	        String title = "Download a file";
+	        String docType = "<!doctype html public \"-//w3c//dtd html 4.0 transitional//en\">\n"; //
+	        out.println(docType + //
+	              "<html>\n" + //
+	              "<head><title>" + title + "</title></head>\n" + //
+	              "<body bgcolor=\"#f0f0f0\">\n" + //
+	              "<h1 align=\"center\">" + title + "</h1>\n");
+	        out.println("<h1>Download a file</h1>\n"
+	        		+ "	<p>Click the button to download the file:</p>\n"
+	        		+ "	<a href="+ outputFile +" download>Download File</a>");
+
+	        
 	        
 	        audioInputStream.close();
 			
