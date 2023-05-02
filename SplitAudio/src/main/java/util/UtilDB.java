@@ -37,6 +37,7 @@ public class UtilDB {
 	         return session;
 	      }
 	      session = new SessionLog();
+	      deleteFileByUser(1);
 	      return session;
 	   }
    
@@ -294,6 +295,29 @@ public class UtilDB {
 			   session.close();
 		   }
 	}
+	
+	public static void deleteFileByUser(int uid) {
+        Session session = getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            List<?> users = session.createQuery("FROM Audio_Files").list();
+              for (Iterator<?> iterator = users.iterator(); iterator.hasNext();) {
+                  Audio_Files file = (Audio_Files) iterator.next();
+                  if (file.getuid() == uid) {
+                        deleteFile(file.getId());
+                  }
+              }
+              tx.commit();
+
+        } catch (HibernateException e) {
+            if(tx != null)
+                tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+ }
 
 	public static String userNameById(Integer userId) {
 		// TODO Auto-generated method stub
