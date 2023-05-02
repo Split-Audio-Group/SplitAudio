@@ -128,6 +128,31 @@
 	  			<input type="file" id="audio-file" name="audio-file">
 	  			<input type="submit" value="Upload">
 			</form>
+			
+			
+			<script>
+  function getParameterByName(name) {
+    var url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+      results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+  }
+
+  if (getParameterByName('success') === 'true') {
+    alert("File uploaded successfully!");
+  }
+  else if (getParameterByName('success') === 'badFileExt'){
+	  alert("File upload was unsuccessful! Please only use .WAV files!");
+  }
+  else if (getParameterByName('success') === 'badFileSize'){
+	  alert("File upload was unsuccessful! Your file size must be < 10MB!");
+  }
+</script>
+			
+			
 	    	
 	        <h3>Trim audio file</h3>
 	        <form  action="Trim" method ="post">
