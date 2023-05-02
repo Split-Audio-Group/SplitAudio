@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<link rel="stylesheet" href="SplitAudio.css">
+		<title>Edit</title>
+		<link rel="icon" type="image/x-icon" href="Sound_Splice_Icon.svg">
+<style>
+
+.main-component {
+	margin-left: 17%;
+	padding: 20px;
+}
+
+ .input-trim {
+ 	margin: 5px;
+ }
+
+
+</style>
+</head>
+    <header>
+    <h1>Edit page</h1>
+    
+    </header>
+    
+    <body>
+    
+    </body>
+    <div class="main-component">
+    	<h3>Upload audio file</h3>
+    	<form action="Upload" method="post" enctype="multipart/form-data">
+  			<label for="audio-file">Select an audio file:</label>
+  			<input type="file" id="audio-file" name="audio-file">
+  			<button type="submit">Upload</button>
+		</form>
+    	
+        <h3 >Trim audio file</h3>
+        <form  action="Trim" method ="post">
+            Trim from <input class="input-trim" type="text" name="trimFrom" value=""> second<br>
+            To <input class="input-trim" type="text" name="trimToWhen" value=""> second
+            
+            <input type="submit" value="Trim">
+        </form>
+        
+        <h3>Split audio file</h3>
+        <form action="Split" method="post">
+            Split on <input type="text" name="splitWhen" value="">
+            <input type="submit" value="Split">
+        </form>
+        
+        <h3>Level audio file</h3>
+        <form action="Level" method="post">
+            <input type="submit" value="Level Audio">
+        </form>
+    </div>
+    
+    <footer>
+		<div id="page_wrapper" class="footer_text">
+			<img src="Sound_Splice_Logo.svg" height="200" width="150"/>
+		</div>
+	</footer>
+</html>

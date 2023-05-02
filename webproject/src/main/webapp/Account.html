@@ -1,0 +1,137 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="SplitAudio.css">
+		<title>Account</title>
+		<link rel="icon" type="image/x-icon" href="Sound_Splice_Icon.svg">
+		<style>
+		.loginbox p{
+			margin: 0;
+			padding: 0;
+			font-weight: bold;
+		}
+		
+		.loginbox {
+			width: 400px;
+			height: auto;
+			background: #ffffff;
+			color: #000000;
+			top: 50%;
+			left: 50%;
+			position: relative;
+			transform: translate(-50%, 2.75%);
+			box-sizing: border-box;
+			padding: 50px 50px;
+		}
+		
+		.login{
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+			position: absolute;
+			top: -50px;
+			left: calc(50% - 50px);
+		
+		
+		}
+		
+		.loginbox input{
+			width: 100%;
+			margin-bottom: 20px;
+		}
+		
+		.loginbox input[type="text"], input[type="password"]
+		{
+			border: none;
+			border-bottom: 1px solid #909090;
+			background: transparent;
+			outline: none;
+			height: 40px;
+			color: #000000;
+			font-size: 14px;
+		}
+		
+		.loginbox input[type="submit"]
+		{
+			border: none;
+			outline: none;
+			height: 40px;
+			background: #909090;
+			color: #ffffff;
+			font-size: 18px;
+			border-radius: 20px;
+		}
+		
+		.loginbox input[type="submit"]:hover
+		{
+			cursor: pointer;
+			background: #909090;
+			color: #000000;
+		}
+		
+		.loginbox a{
+			text-decoration: none;
+			font-size: 12px;
+			line-height: 18px;
+			color: white;
+		}
+		
+		.loginbox a:hover
+		{
+			color: #404040;
+		}
+		
+		</style>
+	</head>
+	
+	<body>
+		<header>
+			<div id="page_wrapper">
+			<img src="Sound_Splice_Logo.svg" height="200" width="150"/>
+				<nav>	
+					<ul>
+						<!--Home  Add  Edit Account-->
+						<li><a href="Home.html">Home</a></li>
+						<li><a href="Files.html">Files</a></li>
+						<li><a href="EditPage.html">Edit</a></li>
+						<li><a href="Account.html">Account</a></li>
+					</ul>
+				</nav>
+			</div>
+		</header>
+		<div id="page_wrapper">
+			<div class="loginbox" >
+				<h1>Account Options</h1>
+				<!--  <form action="SignUp.html" method="post">
+					<input type="submit" name="" value="My Account">
+				</form>-->
+				
+				<form action="LogIn.html" method="post">
+					<input type="submit" name="" value="Login">
+				</form>
+				
+				<form action="Signup.html" method="post">
+					<input type="submit" name="" value="Sign Up">
+				</form>
+				
+				
+			</div>
+			<br style="clear:both" /> <!-- This ensures that the displaybox is within the middle box -->
+		</div>
+		
+		<footer>
+			<div id="page_wrapper" class="footer_text">
+				<img src="Sound_Splice_Logo.svg" height="200" width="150"/>
+			</div>
+		</footer>
+	</body>
+	<script>
+		function myFunction() {
+			var x = document.getElementById("myInput");
+			 if (x.type === "password") {
+				 x.type = "text";
+			} else {
+				 x.type = "password";
+			}
+		}
+	</script>
+</html>

@@ -1,0 +1,10 @@
+1,1,TEST 1,/home/ubuntu/files/file1.wav,12.3,1
+2,2,File 2,/home/ubuntu/files/file2.wav,100.3,0
+3,9,TEST 2,/home/ubuntu/files/file3.wav,12.3,1
+4,10,File 3,/home/ubuntu/files/file4.wav,100.3,1
+5,11,TEST 3,/home/ubuntu/files/file5.wav,12.3,1
+6,12,File 4,/home/ubuntu/files/file6.wav,100.3,0
+7,9,TEST 4,/home/ubuntu/files/file7.wav,12.3,0
+8,1,File 5,/home/ubuntu/files/file8.wav,100.3,0
+9,11,TEST 5,/home/ubuntu/files/file9.wav,12.3,0
+10,10,File 6,/home/ubuntu/files/file10.wav,100.3,0
