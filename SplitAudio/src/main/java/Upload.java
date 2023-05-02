@@ -3,6 +3,9 @@
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import datamodel.User;
 import util.Info;
+import util.SessionLog;
 import util.UtilDB;
 
 /**
@@ -34,25 +39,20 @@ public class Upload extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
-        
-        
-    	
     	try {
-        	
+    		response.setContentType("text/html;charset=UTF-8");
         	
         	// Get the uploaded file from the request
             Part filePart = request.getPart("audio-file");
-            String filename = filePart.getSubmittedFileName();
+            String fileName = filePart.getSubmittedFileName();
             
         
             
             // Get the file extension
             String extension = "";
-            int i = filename.lastIndexOf('.');
+            int i = fileName.lastIndexOf('.');
             if (i > 0) {
-                extension = filename.substring(i + 1);
+                extension = fileName.substring(i + 1);
             }
 
             // Check if the file is an audio file
@@ -62,17 +62,43 @@ public class Upload extends HttpServlet {
             }
             
             // Get the file size
-            long fileSize = filePart.getSize();
+            double fileSize = filePart.getSize() / 100000.00;
 
             // Check if the file size is within acceptable limits
-            if (fileSize > 10000000) { // 10 MB
+            if (fileSize > 250) { // 250 KB
             	response.sendRedirect(request.getContextPath() + "/EditPage.html?success=badFileSize");
                 return;
             }
             
+         // Read the file content
+            byte[] fileContent = new byte[(int) fileSize];
+            try {
+            	filePart.getInputStream().read(fileContent);
+            } catch (IOException e) {
+            	e.printStackTrace();
+            }
             
-            File file = new File("C:\\audio_files\\" + filename); // Modify this path to match the directory where you want to save the file
+            // Get the file path to write
+            String filePath = "/home/ubuntu/files/" + fileName;
+            
+            // Sets userID to default value
+            int userID = 1;
+				
+            // Tries to find the current user  and their associated ID
+			User currentUser = SessionLog.getCurrentUser();
+			if (currentUser != null) {
+				userID = currentUser.getId();
+			}
+
+           
+            // Write the file to the directory located on the server
+            File file = new File(filePath + fileName); // Modify this path to match the directory where you want to save the file
             filePart.write(file.getAbsolutePath());
+            
+            
+            
+         // Save the file data to the database
+            UtilDB.createFile(userID, fileName, filePath, fileSize, true);
             
          // Redirect back to the form with a success message
             response.sendRedirect(request.getContextPath() + "/EditPage.html?success=true");
