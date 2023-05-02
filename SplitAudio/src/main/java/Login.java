@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import datamodel.*;
 import util.Info;
+import util.SessionLog;
 import util.UtilDB;
 
 @WebServlet("/Login")
@@ -23,53 +24,23 @@ public class Login extends HttpServlet implements Info {
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       String username = request.getParameter("username").trim();
       String password = request.getParameter("password").trim();
-
-      response.setContentType("text/html");
-      PrintWriter out = response.getWriter();
-      String title = "Database Result";
-      String docType = "<!doctype html public \"-//w3c//dtd html 4.0 transitional//en\">\n"; //
-      out.println(docType + //
-            "<html>\n" + //
-            "<head><title>" + title + "</title></head>\n" + //
-            "<body bgcolor=\"#f0f0f0\">\n" + //
-            "<h1 align=\"center\">" + title + "</h1>\n");
-      out.println("<ul>");
-
+      
       List<User> listUsers = null;
       if (username != null && !username.isEmpty() && password != null && !password.isEmpty()) {
          listUsers = UtilDB.logInUser(username,password);
          if(listUsers.isEmpty()) {
-        	out.println("<h1>There is no user with that login.</h1> <br>");
-            out.println("<a href=/" + projectName + "/" + logIn + ">Log In</a> <br>");
+        	 response.sendRedirect(request.getContextPath() + "/LogIn.html?success=noUser");
          }else {
         	 UtilDB.getSession().setUser(listUsers.get(0));
-        	 display(listUsers, out);
-        	 System.out.print(UtilDB.getSession().getCurrentUser());
-        	 out.println("<a href=/" + projectName + "/" + home + ">Home</a> <br>");
+        	 UtilDB.getSession();
+        	 response.sendRedirect(request.getContextPath() + "/LogIn.html?success=goodUserPass");
          }
       } else {
-         //listEmployees = UtilDBWilliams.listUsers();
-         out.println("<h1>There must be a username and password entered.</h1> <br>");
-         out.println("<a href=/" + projectName + "/" + logIn + ">Log In</a> <br>");
-      }
-      
-      out.println("</ul>");
-      //out.println("<a href=/" + projectName + "/" + newMessage + ">Create Message</a> <br>");
-      //out.println("<a href=/" + projectName + "/" + searchMessage + ">View Message</a> <br>");
-      out.println("</body></html>");
-   }
-
-   void display(List<User> listUsers, PrintWriter out) {
-      for (User employee : listUsers) {
-         System.out.println("[DBG] " + employee.getId() + ", " //
-               + employee.getName() + ", " //
-               + employee.getEmail());
-
-         out.println("<li>" + employee.getId() + ", " //
-               + employee.getName() + ", " //
-               + employee.getEmail() + "</li>");
+    	  response.sendRedirect(request.getContextPath() + "/LogIn.html?success=badUserPass");
       }
    }
+
+
 
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
       doGet(request, response);

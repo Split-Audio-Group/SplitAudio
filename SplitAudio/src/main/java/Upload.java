@@ -40,8 +40,6 @@ public class Upload extends HttpServlet {
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	try {
-    		response.setContentType("text/html;charset=UTF-8");
-        	
         	// Get the uploaded file from the request
             Part filePart = request.getPart("audio-file");
             String fileName = filePart.getSubmittedFileName();
@@ -92,8 +90,8 @@ public class Upload extends HttpServlet {
 
            
             // Write the file to the directory located on the server
-            File file = new File(filePath + fileName); // Modify this path to match the directory where you want to save the file
-            filePart.write(file.getAbsolutePath());
+//            File file = new File(filePath + fileName); // Modify this path to match the directory where you want to save the file
+//            filePart.write(file.getAbsolutePath());
             
             
             
@@ -101,7 +99,8 @@ public class Upload extends HttpServlet {
             UtilDB.createFile(userID, fileName, filePath, fileSize, true);
             
          // Redirect back to the form with a success message
-            response.sendRedirect(request.getContextPath() + "/EditPage.html?success=true");
+           response.sendRedirect(request.getContextPath() + "/EditPage.html?success=true");
+           
             
         } catch (Exception e) {
             e.printStackTrace();
