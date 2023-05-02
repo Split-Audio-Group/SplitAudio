@@ -9,11 +9,12 @@ import datamodel.*;
 
 public class GenerateArrays {
 	static ArrayList<User> generateUsers() {
-		String userDirectory = new File("").getAbsolutePath() + "/src/main/java/jUnitTests";
+		String userDirectory = new File("").getPath() + "/src/main/java/jUnitTests";
+		ArrayList<User> list = null;
 		try {
 			Scanner sc = new Scanner(new File(userDirectory + "/UserList.csv"));
 			sc.useDelimiter(",|\\n");   //sets the delimiter pattern 
-			ArrayList<User> list = new ArrayList<User>();
+			list = new ArrayList<User>();
 			while (sc.hasNext()){  //returns a boolean value  
 				String userID = sc.next();
 				//System.out.println("id:"+userID);
@@ -40,12 +41,12 @@ public class GenerateArrays {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}  
-		return null;
+		return list;
 		      
 	}
 	
 	static ArrayList<Audio_Files> generateFiles() {
-		String userDirectory = new File("").getAbsolutePath() + "/src/main/java/jUnitTests";
+		String userDirectory = new File("").getPath() + "/src/main/java/jUnitTests";
 		try {
 			Scanner sc = new Scanner(new File(userDirectory + "/FileList.csv"));
 			sc.useDelimiter(",|\\r\\n");   //sets the delimiter pattern 

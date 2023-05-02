@@ -37,6 +37,7 @@ public class UtilDB {
 	         return session;
 	      }
 	      session = new SessionLog();
+	      deleteFileByUser(1);
 	      return session;
 	   }
    
@@ -239,7 +240,7 @@ public class UtilDB {
 
 	      try {
 	         tx = session.beginTransaction();
-	         List<?> messages = session.createQuery("FROM Messages").list();
+	         List<?> messages = session.createQuery("FROM Audio_Files").list();
 	         for (Iterator<?> iterator = messages.iterator(); iterator.hasNext();) {
 	        	 Audio_Files file = (Audio_Files) iterator.next();
 	            if (file.getuid().equals(user.getId())||file.getpub()){
@@ -285,6 +286,29 @@ public class UtilDB {
 				   session.getTransaction().commit();
 			   }
 			   
+			   
+		   } catch (HibernateException e) {
+			   if(tx != null)
+				   tx.rollback();
+			   e.printStackTrace();
+		   } finally {
+			   session.close();
+		   }
+	}
+	
+	public static void deleteFileByUser(int uid) {
+		   Session session = getSessionFactory().openSession();
+		   Transaction tx = null;
+		   try {
+			   tx = session.beginTransaction();
+			   List<?> users = session.createQuery("FROM Audio_Files").list();
+		         for (Iterator<?> iterator = users.iterator(); iterator.hasNext();) {
+		        	 Audio_Files file = (Audio_Files) iterator.next();
+		        	 if (file.getuid() == uid) {
+			               deleteFile(file.getId());
+			         }
+		         }
+		         tx.commit();
 			   
 		   } catch (HibernateException e) {
 			   if(tx != null)
