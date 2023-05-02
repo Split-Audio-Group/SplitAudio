@@ -6,7 +6,7 @@
 	<session-factory>
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://csci4840-williams.ddns.net:3306/SplitAudio?useSSL=false</property>
+		<property name="hibernate.connection.url">jdbc:mysql://csci4840-williams.ddns.net:3306/SplitAudio?allowPublicKeyRetrieval=true</property>
 		<property name="hibernate.connection.username">remoteuser</property>
 		<property name="hibernate.connection.password">password</property>
 		<property name="hibernate.hbm2ddl.auto">update</property>
