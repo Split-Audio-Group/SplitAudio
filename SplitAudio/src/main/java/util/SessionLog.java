@@ -4,14 +4,14 @@ import java.io.File;
 import datamodel.*;
 
 public class SessionLog {
-	private User currentUser;
+	private static User currentUser;
 	private File currentFile;
 	
 	public SessionLog() {
 		super();
 	}
 
-	public User getCurrentUser(){
+	public static User getCurrentUser(){
 		return currentUser;
 	}
 	
