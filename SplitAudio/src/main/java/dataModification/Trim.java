@@ -39,9 +39,12 @@ public class Trim extends HttpServlet {
 		String startTime = request.getParameter("trimFrom").trim();
 		String endTime = request.getParameter("trimToWhen").trim();
 		
+		
+		// time for trim
 		float startTimeInSeconds = Float.parseFloat(startTime);
 		float endTimeInSeconds = Float.parseFloat(endTime);
 	
+		// print them for debug
 		System.out.println("Selected file: " + filename);
 		System.out.println("Trim from: " + startTimeInSeconds);
 		System.out.println("To: " + endTimeInSeconds);
@@ -49,7 +52,7 @@ public class Trim extends HttpServlet {
 		
 		try {
 			File inputFile = new File(filename);
-			File outputFileName = new File("sampleOutputFile.wav");
+			File outputFile = new File("sampleOutputFile.wav");
 			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(inputFile);
 	        AudioFormat format = audioInputStream.getFormat();
 
@@ -60,8 +63,12 @@ public class Trim extends HttpServlet {
 	        trimmedAudioInputStream.skip(startByte);
 
 //	        OutputStream outputFile;
-			AudioSystem.write(trimmedAudioInputStream, AudioFileFormat.Type.WAVE, outputFileName);
+			AudioSystem.write(trimmedAudioInputStream, AudioFileFormat.Type.WAVE, outputFile);
 
+			//jump to the jsp file for users to download a file
+	        request.setAttribute("outputFile", outputFile);
+	        request.getRequestDispatcher("src/main/webapp/download.jsp").forward(request, response);
+			
 	        audioInputStream.close();
 	        trimmedAudioInputStream.close();
 			

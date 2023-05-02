@@ -41,9 +41,12 @@ public class Split extends HttpServlet {
 		 
 		//System.out.println(filename);
 		
+		// split time
 		int segmentDurationInSeconds = Integer.parseInt(segmentDuration);
 		
 		System.out.println(segmentDurationInSeconds);
+		
+		//split function
 		try {
 			File inputFile = UtilDB.getSession().getCurrentFile();
 			
@@ -51,7 +54,6 @@ public class Split extends HttpServlet {
 	        AudioFormat format = audioInputStream.getFormat();
 
 	        int bytesPerSecond = format.getFrameSize() * (int)format.getFrameRate();
-//	        int segmentDurationInSeconds;
 			int segmentLength = bytesPerSecond * segmentDurationInSeconds;
 
 	        int segmentNumber = 1;
@@ -66,6 +68,8 @@ public class Split extends HttpServlet {
 	            segmentNumber++;
 	        }
 	        
+	        
+	        //jump to the jsp file for users to download a file
 	        request.setAttribute("outputFile", outputFile);
 	        request.getRequestDispatcher("src/main/webapp/download.jsp").forward(request, response);
 	        
