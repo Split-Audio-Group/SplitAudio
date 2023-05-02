@@ -40,11 +40,13 @@ public class Upload extends HttpServlet {
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	try {
+    		UtilDB.getSession();
+    		
         	// Get the uploaded file from the request
             Part filePart = request.getPart("audio-file");
             String fileName = filePart.getSubmittedFileName();
             
-        
+            
             
             // Get the file extension
             String extension = "";

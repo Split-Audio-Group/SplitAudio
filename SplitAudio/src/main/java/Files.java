@@ -20,7 +20,8 @@ public class Files extends HttpServlet implements Info {
    }
 
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-      String option = request.getParameter("options").trim();
+	   UtilDB.getSession();
+	   String option = request.getParameter("options").trim();
 
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();

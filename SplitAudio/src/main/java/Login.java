@@ -23,7 +23,6 @@ public class Login extends HttpServlet implements Info {
 
 	// Handle GET request
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		// Get the username and password parameters from the request
 		String username = request.getParameter("username").trim();
 		String password = request.getParameter("password").trim();
