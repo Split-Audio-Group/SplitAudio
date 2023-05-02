@@ -67,7 +67,7 @@ public class Split extends HttpServlet {
 	        }
 	        
 	        request.setAttribute("outputFile", outputFile);
-	        request.getRequestDispatcher("src/main/webapp/splitJSP.jsp").forward(request, response);
+	        request.getRequestDispatcher("src/main/webapp/download.jsp").forward(request, response);
 	        
 	        audioInputStream.close();
 			
