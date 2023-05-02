@@ -4,6 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,36 +48,51 @@ public class Trim extends HttpServlet {
 		
 		
 		// time for trim
-		float startTimeInSeconds = Float.parseFloat(startTime);
-		float endTimeInSeconds = Float.parseFloat(endTime);
+		int startSecond = Integer.parseInt(startTime);
+		int endTimeInSeconds = Integer.parseInt(endTime);
+		
+		int secondsToCopy = endTimeInSeconds - startSecond;
 	
 		// print them for debug
-		System.out.println("Trim from: " + startTimeInSeconds);
+		System.out.println("Trim from: " + startSecond);
 		System.out.println("To: " + endTimeInSeconds);
 		
 		
+		File inputFile = UtilDB.getSession().getCurrentFile();
+		File outputFile = new File("SplittedAudioFile.wav");
+        System.out.println("Size of input file " + inputFile.length());
+		
+		AudioInputStream inputStream = null;
+		AudioInputStream shortenedStream = null;
+		
 		try {
-			File inputFile = UtilDB.getSession().getCurrentFile();
-			File outputFile = new File("sampleOutputFile.wav");
-			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(inputFile);
-	        AudioFormat format = audioInputStream.getFormat();
-
-			long startByte = (long)(startTimeInSeconds * format.getFrameRate()) * format.getFrameSize();
-			long endByte = (long)(endTimeInSeconds * format.getFrameRate()) * format.getFrameSize();
-
-	        AudioInputStream trimmedAudioInputStream = new AudioInputStream(audioInputStream, format, endByte - startByte);
-	        trimmedAudioInputStream.skip(startByte);
-
-//	        OutputStream outputFile;
-			AudioSystem.write(trimmedAudioInputStream, AudioFileFormat.Type.WAVE, outputFile);
-
-			//jump to the jsp file for users to download a file
-	        request.setAttribute("outputFile", outputFile);
-	        request.getRequestDispatcher("src/main/webapp/download.jsp").forward(request, response);
 			
-	        audioInputStream.close();
-	        trimmedAudioInputStream.close();
+			AudioFileFormat fileFormat = AudioSystem.getAudioFileFormat(inputFile);
+			AudioFormat format = fileFormat.getFormat();
+			inputStream = AudioSystem.getAudioInputStream(inputFile);
 			
+			int bytesPerSecond = format.getFrameSize() * (int)format.getFrameRate();
+			inputStream.skip(startSecond * bytesPerSecond);
+			long framesOfAudioToCopy = secondsToCopy * (int)format.getFrameRate();
+			shortenedStream = new AudioInputStream(inputStream, format, framesOfAudioToCopy);
+			File destinationFile = new File(inputFile.getParentFile(), "Trimmed" + ".wav");
+		    AudioSystem.write(shortenedStream, fileFormat.getType(), destinationFile);
+		    
+		    response.setContentType("text/html");
+	        PrintWriter out = response.getWriter();
+	        String title = "Download a file";
+	        String docType = "<!doctype html public \"-//w3c//dtd html 4.0 transitional//en\">\n"; //
+	        out.println(docType + //
+	              "<html>\n" + //
+	              "<head><title>" + title + "</title></head>\n" + //
+	              "<body bgcolor=\"#f0f0f0\">\n" + //
+	              "<h1 align=\"center\">" + title + "</h1>\n");
+	        out.println("<h1>Download a file</h1>\n"
+	        		+ "	<p>Click the button to download the file:</p>\n"
+	        		+ "	<a href="+ destinationFile +" download>Download File</a>");
+	        
+	        System.out.println("Size of output file " + destinationFile.length());
+
 		}
 		catch (UnsupportedAudioFileException e) {
 			System.out.println(e);
@@ -80,6 +100,8 @@ public class Trim extends HttpServlet {
 		catch (IOException e) {
 			System.out.println(e);
 		}
+		
+		
 	}
 
 	/**
