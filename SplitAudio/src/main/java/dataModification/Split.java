@@ -50,6 +50,7 @@ public class Split extends HttpServlet {
 		//split function
 		try {
 			File inputFile = UtilDB.getSession().getCurrentFile();
+			System.out.println("Size of input file " + inputFile.length());
 			
 			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(inputFile);
 	        AudioFormat format = audioInputStream.getFormat();
@@ -68,11 +69,7 @@ public class Split extends HttpServlet {
 	            AudioSystem.write(segmentAudioInputStream, AudioFileFormat.Type.WAVE, outputFile);
 	            segmentNumber++;
 	        }
-	        
-	        
-	        //jump to the jsp file for users to download a file
-//	        request.setAttribute("outputFile", outputFile);
-//	        request.getRequestDispatcher("SplitAudio/src/main/webapp/download.jsp").forward(request, response);
+
 	        
 	        response.setContentType("text/html");
 	        PrintWriter out = response.getWriter();
@@ -88,14 +85,19 @@ public class Split extends HttpServlet {
 	        		+ "	<a href="+ outputFile +" download>Download File</a>");
 
 	        
-	        
+	        System.out.println("Size of output file " + outputFile.length());
 	        audioInputStream.close();
 			
 		}
 		catch (UnsupportedAudioFileException e){
+			response.sendRedirect(request.getContextPath() + "/EditPage.html?success=badFileSize");
 			System.out.println(e);
 		}
+		catch(NullPointerException e) {
+			response.sendRedirect(request.getContextPath() + "/EditPage.html?success=false");
+		}
 		catch (IOException e) {
+			response.sendRedirect(request.getContextPath() + "/EditPage.html?success=false");
 			System.out.println(e);
 		}
 
