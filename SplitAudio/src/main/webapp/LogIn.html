@@ -126,6 +126,9 @@
   if (getParameterByName('success') === 'goodUserPass') {
     alert("Login Successful! You are now logged in!");
   }
+  else if (getParameterByName('success') === 'goodSignUp'){
+	  alert("Signup Successful! Go ahead and log in.");
+  }
   else if (getParameterByName('success') === 'badUserPass'){
 	  alert("Login Unsuccessful! Incorrect user or password");
   }

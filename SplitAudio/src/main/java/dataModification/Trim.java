@@ -67,7 +67,7 @@ public class Trim extends HttpServlet {
 
 			//jump to the jsp file for users to download a file
 	        request.setAttribute("outputFile", outputFile);
-	        request.getRequestDispatcher("src/main/webapp/download.jsp").forward(request, response);
+	        request.getRequestDispatcher("/download.jsp").forward(request, response);
 			
 	        audioInputStream.close();
 	        trimmedAudioInputStream.close();

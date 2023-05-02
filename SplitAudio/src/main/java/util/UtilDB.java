@@ -91,6 +91,32 @@ public class UtilDB {
 	      return resultList;
 	   }
    
+   public static List<User> listUsersEmail(String keyword) {
+	      List<User> resultList = new ArrayList<User>();
+
+	      Session session = getSessionFactory().openSession();
+	      Transaction tx = null;
+
+	      try {
+	         tx = session.beginTransaction();
+	         List<?> users = session.createQuery("FROM User").list();
+	         for (Iterator<?> iterator = users.iterator(); iterator.hasNext();) {
+	        	 User user = (User) iterator.next();
+	            if (user.getEmail().startsWith(keyword)) {
+	               resultList.add(user);
+	            }
+	         }
+	         tx.commit();
+	      } catch (HibernateException e) {
+	         if (tx != null)
+	            tx.rollback();
+	         e.printStackTrace();
+	      } finally {
+	         session.close();
+	      }
+	      return resultList;
+	   }
+   
    
    public static void createUser(String userName, String displayName, String email, String password) {
 	      Session session = getSessionFactory().openSession();

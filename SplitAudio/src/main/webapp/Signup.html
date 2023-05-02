@@ -120,6 +120,30 @@
 				<input type="submit" name="" value="Log In">
 			</form>
 			
+			<script>
+  function getParameterByName(name) {
+    var url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+      results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+  }
+
+  if (getParameterByName('error') === 'invalidUserName') {
+    alert("Signup Unsuccessful! Please enter a valid username. This username may be taken");
+  }
+  else if (getParameterByName('error') === 'invalidPassword'){
+	  alert("Signup Unsuccessful! Please enter a valid password > 4 characters.");
+  }
+  else if (getParameterByName('error') === 'invalidEmail'){
+	  alert("Signup Unsuccessful! Please enter a valid email. This email may be taken");
+  }
+
+  
+</script>
+			
 	</div>
 		
 		<footer>
