@@ -21,6 +21,8 @@ public class Signup extends HttpServlet implements Info {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    	UtilDB.getSession();
+    	
         // Retrieve user input
         String userName = request.getParameter("username").trim();
         String password = request.getParameter("password").trim();

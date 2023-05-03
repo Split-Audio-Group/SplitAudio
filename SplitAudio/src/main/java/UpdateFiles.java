@@ -34,6 +34,9 @@ public class UpdateFiles extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		UtilDB.getSession();
+		
 		String selected = null;
 		String deleted = null;
 		if(request.getParameter("select") == null) {
