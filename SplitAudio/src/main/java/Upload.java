@@ -93,6 +93,7 @@ public class Upload extends HttpServlet {
            
             // Write the file to the directory located on the server
             File file = new File(filePath + fileName); // Modify this path to match the directory where you want to save the file
+            UtilDB.getSession().setFile(file);
             filePart.write(file.getAbsolutePath());
             
             
