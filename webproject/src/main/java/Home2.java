@@ -165,6 +165,7 @@ public class Home2 extends HttpServlet implements Info {
  		     display_files(listMessages, out);
     	  }
       }else{
+    	  
     	  System.out.println("Made it to public files.");
     	  List<Audio_Files> listMessages = null;
 		  listMessages = UtilDB.listFiles();
