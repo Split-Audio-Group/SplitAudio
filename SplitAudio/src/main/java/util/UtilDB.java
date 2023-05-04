@@ -240,7 +240,7 @@ public class UtilDB {
 
 	      try {
 	         tx = session.beginTransaction();
-	         List<?> messages = session.createQuery("FROM Audio_Files").list();
+	         List<?> messages = session.createQuery("FROM Messages").list();
 	         for (Iterator<?> iterator = messages.iterator(); iterator.hasNext();) {
 	        	 Audio_Files file = (Audio_Files) iterator.next();
 	            if (file.getuid().equals(user.getId())||file.getpub()){
@@ -297,29 +297,6 @@ public class UtilDB {
 	}
 	
 	public static void deleteFileByUser(int uid) {
-<<<<<<< HEAD
-		   Session session = getSessionFactory().openSession();
-		   Transaction tx = null;
-		   try {
-			   tx = session.beginTransaction();
-			   List<?> users = session.createQuery("FROM Audio_Files").list();
-		         for (Iterator<?> iterator = users.iterator(); iterator.hasNext();) {
-		        	 Audio_Files file = (Audio_Files) iterator.next();
-		        	 if (file.getuid() == uid) {
-			               deleteFile(file.getId());
-			         }
-		         }
-		         tx.commit();
-			   
-		   } catch (HibernateException e) {
-			   if(tx != null)
-				   tx.rollback();
-			   e.printStackTrace();
-		   } finally {
-			   session.close();
-		   }
-	}
-=======
         Session session = getSessionFactory().openSession();
         Transaction tx = null;
         try {
@@ -341,7 +318,6 @@ public class UtilDB {
             session.close();
         }
  }
->>>>>>> refs/heads/Merge_to_main
 
 	public static String userNameById(Integer userId) {
 		// TODO Auto-generated method stub
