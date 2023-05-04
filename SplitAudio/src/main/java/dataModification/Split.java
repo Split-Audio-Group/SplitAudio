@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.io.FileOutputStream;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +17,10 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import org.apache.tomcat.util.http.fileupload.IOUtils;
+
+import datamodel.User;
+import util.SessionLog;
 import util.UtilDB;
 
 /**
@@ -50,6 +55,7 @@ public class Split extends HttpServlet {
 		//split function
 		try {
 			File inputFile = UtilDB.getSession().getCurrentFile();
+			
 			System.out.println("Size of input file " + inputFile.length());
 			
 			AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(inputFile);
@@ -62,27 +68,22 @@ public class Split extends HttpServlet {
 	        int bytesRead = 0;
 	        byte[] audioBuffer = new byte[segmentLength];
 
-	        File outputFile = new File(inputFile.getParentFile(), "segment_" + segmentNumber + ".wav");
+	        File outputFile = new File("/home/ubuntu/editedFiles/", "editedSegment_" + segmentNumber + ".wav");
 	        while ((bytesRead = audioInputStream.read(audioBuffer)) != -1) {
 	            
 	            AudioInputStream segmentAudioInputStream = new AudioInputStream(audioInputStream, format, bytesRead);
 	            AudioSystem.write(segmentAudioInputStream, AudioFileFormat.Type.WAVE, outputFile);
 	            segmentNumber++;
 	        }
-
 	        
-	        response.setContentType("text/html");
-	        PrintWriter out = response.getWriter();
-	        String title = "Download a file";
-	        String docType = "<!doctype html public \"-//w3c//dtd html 4.0 transitional//en\">\n"; //
-	        out.println(docType + //
-	              "<html>\n" + //
-	              "<head><title>" + title + "</title></head>\n" + //
-	              "<body bgcolor=\"#f0f0f0\">\n" + //
-	              "<h1 align=\"center\">" + title + "</h1>\n");
-	        out.println("<h1>Download a file</h1>\n"
-	        		+ "	<p>Click the button to download the file:</p>\n"
-	        		+ "	<a href="+ outputFile +" download>Download File</a>");
+	        UtilDB.getSession().setFile(outputFile);
+                      
+//            file.setExecutable(true, false);
+//            file.setReadable(true, false);
+//            file.setWritable(true, false);
+	        
+	        response.sendRedirect(request.getContextPath() + "/EditedFile.html");
+	        
 
 	        
 	        System.out.println("Size of output file " + outputFile.length());

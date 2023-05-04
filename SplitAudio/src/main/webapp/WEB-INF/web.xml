@@ -22,6 +22,20 @@
 		<servlet-name>testing</servlet-name>
 		<servlet-class>testing</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>Cancel</display-name>
+		<servlet-name>Cancel</servlet-name>
+		<servlet-class>Cancel</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>Download</display-name>
+		<servlet-name>Download</servlet-name>
+		<servlet-class>Download</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Update</servlet-name>
 		<url-pattern>/Update</url-pattern>
@@ -33,6 +47,14 @@
 	<servlet-mapping>
 		<servlet-name>testing</servlet-name>
 		<url-pattern>/testing</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Cancel</servlet-name>
+		<url-pattern>/Cancel</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Download</servlet-name>
+		<url-pattern>/Download</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

@@ -1,6 +1,7 @@
 package dataModification;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -16,6 +17,8 @@ import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
+
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 
 import util.UtilDB;
 
@@ -70,22 +73,17 @@ public class Trim extends HttpServlet {
 			inputStream.skip(startSecond * bytesPerSecond);
 			long framesOfAudioToCopy = secondsToCopy * (int)format.getFrameRate();
 			shortenedStream = new AudioInputStream(inputStream, format, framesOfAudioToCopy);
-			File destinationFile = new File(inputFile.getParentFile(), "Trimmed" + ".wav");
+			File destinationFile = new File("/home/ubuntu/editedFiles/", "trimmedFile" + ".wav");
 		    AudioSystem.write(shortenedStream, fileFormat.getType(), destinationFile);
 		    
-		    response.setContentType("text/html");
-	        PrintWriter out = response.getWriter();
-	        String title = "Download a file";
-	        String docType = "<!doctype html public \"-//w3c//dtd html 4.0 transitional//en\">\n"; //
-	        out.println(docType + //
-	              "<html>\n" + //
-	              "<head><title>" + title + "</title></head>\n" + //
-	              "<body bgcolor=\"#f0f0f0\">\n" + //
-	              "<h1 align=\"center\">" + title + "</h1>\n");
-	        out.println("<h1>Download a file</h1>\n"
-	        		+ "	<p>Click the button to download the file:</p>\n"
-	        		+ "	<a href="+ destinationFile +" download>Download File</a>");
-	        
+		    UtilDB.getSession().setFile(destinationFile);
+		    
+		    response.sendRedirect(request.getContextPath() + "/EditedFile.html");
+	     
+//		    destinationFile.setExecutable(true, false);
+//		    destinationFile.setReadable(true, false);
+//		    destinationFile.setWritable(true, false);
+		    
 	        System.out.println("Size of output file " + destinationFile.length());
 
 		}

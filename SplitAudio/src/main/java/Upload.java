@@ -62,10 +62,10 @@ public class Upload extends HttpServlet {
             }
             
             // Get the file size
-            double fileSize = filePart.getSize() / 100000.00;
+            double fileSize = filePart.getSize() / 1000000.00;
 
             // Check if the file size is within acceptable limits
-            if (fileSize > 250) { // 250 KB
+            if (fileSize > 100) { // 100 MB
             	response.sendRedirect(request.getContextPath() + "/EditPage.html?success=badFileSize");
                 return;
             }
