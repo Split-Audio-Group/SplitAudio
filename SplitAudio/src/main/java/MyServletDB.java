@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/MyServletDB")
 public class MyServletDB extends HttpServlet {
    private static final long serialVersionUID = 1L;
-   static String url = "jdbc:mysql://csci4840-williams.ddns.net:3306/SplitAudio" + "?allowPublicKeyRetrieval=true&useSSL=false";
-   static String user = "remoteuser";
-   static String password = "password";
+   static String url = "jdbc:mysql://langserverhost.ddns.net:3306/SplitAudio" + "?allowPublicKeyRetrieval=true&useSSL=false";
+   static String user = "langjamesremoteuser";
+   static String password = "whitesmallchick3n";
    static Connection connection = null;
 
    public MyServletDB() {

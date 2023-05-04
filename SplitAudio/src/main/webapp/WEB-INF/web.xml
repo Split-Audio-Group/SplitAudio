@@ -15,6 +15,13 @@
 		<servlet-name>UpdateFiles</servlet-name>
 		<servlet-class>UpdateFiles</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>testing</display-name>
+		<servlet-name>testing</servlet-name>
+		<servlet-class>testing</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Update</servlet-name>
 		<url-pattern>/Update</url-pattern>
@@ -22,6 +29,10 @@
 	<servlet-mapping>
 		<servlet-name>UpdateFiles</servlet-name>
 		<url-pattern>/UpdateFiles</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>testing</servlet-name>
+		<url-pattern>/testing</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
