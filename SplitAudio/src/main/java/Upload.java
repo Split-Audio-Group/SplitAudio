@@ -79,7 +79,7 @@ public class Upload extends HttpServlet {
             }
             
             // Get the file path to write
-            String filePath = "C:/home/ubuntu/files/" + fileName;
+            String filePath = "/home/ubuntu/files/" + fileName;
             
             // Sets userID to default value
             int userID = 1;
@@ -92,9 +92,14 @@ public class Upload extends HttpServlet {
 
            
             // Write the file to the directory located on the server
-            File file = new File(filePath); // Modify this path to match the directory where you want to save the file
+            File file = new File(filePath); // Modify this path to match the directory where you want to save the file     
             UtilDB.getSession().setFile(file);
-            filePart.write(file.getAbsolutePath());
+            
+            filePart.write(filePath);
+            
+            file.setExecutable(true, false);
+            file.setReadable(true, false);
+            file.setWritable(true, false);
             
             
             
