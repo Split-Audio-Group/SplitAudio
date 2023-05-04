@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import javax.servlet.http.HttpSession;
 
+import util.UtilDB;
+
 
 @WebServlet("/LogOut")
 public class LogOut extends HttpServlet {
@@ -30,8 +32,9 @@ public class LogOut extends HttpServlet {
           
         request.getRequestDispatcher("LogIn.html").include(request, response);  
           
-        HttpSession session=request.getSession();  
-        session.invalidate();  
+        HttpSession session=request.getSession(); 
+        session.invalidate();
+        
           
         System.out.print("You logged out!");   
 	}

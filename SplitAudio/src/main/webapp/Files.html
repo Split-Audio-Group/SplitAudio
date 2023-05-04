@@ -121,14 +121,27 @@
 	<div id="page_wrapper">
 		<div class="loginbox" >
 			<h1>File Options</h1>
-			<form action="Files" method="POST">	
-				<select name="options">
-					<option value="my">My Files</option>
-					<option value="public">Public Files</option>
-				</select>			
+			<form action="Files" method="POST">				
 				<input type="submit" value="View Files" />
 			</form>
 			
+			
+			<script>
+  function getParameterByName(name) {
+    var url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+      results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+  }
+
+  if (getParameterByName('input') === 'noLogin') {
+    alert("Login to view your files");
+  }
+  
+</script>
 			
 		</div>
 		<br style="clear:both" /> <!-- This ensures that the displaybox is within the middle box -->

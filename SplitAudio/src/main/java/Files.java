@@ -21,7 +21,6 @@ public class Files extends HttpServlet implements Info {
 
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	   UtilDB.getSession();
-	   String option = request.getParameter("options").trim();
 
       response.setContentType("text/html");
       PrintWriter out = response.getWriter();
@@ -150,24 +149,24 @@ public class Files extends HttpServlet implements Info {
             + "	</header>\r\n"
             + "	<div id=\"page_wrapper\">");
       out.println("");
-      if(option.equals("my")) {
-    	  User user = UtilDB.getSession().getCurrentUser();
+//      if(option.equals("my")) {
+    	  UtilDB.getSession();
+		User user = SessionLog.getCurrentUser();
     	  if(user == null) {
-    		  out.println("Log in to see your messages <br>");
-    		  out.println("<a href=/" + projectName + "/" + logIn + ">Login</a> <br>"); 
+    		  response.sendRedirect(request.getContextPath() + "/Files.html?input=noLogin");
     	  }else {
     		  System.out.println("Made it to my files.");
     		  List<Audio_Files> listMessages = null;
- 		     listMessages = UtilDB.listFilesByUser(user);
+ 		     listMessages = UtilDB.listFilesByUser(user.getId());
  		     
  		     display(listMessages, out);
     	  }
-      }else{
-    	  System.out.println("Made it to public files.");
-    	  List<Audio_Files> listMessages = null;
-		  listMessages = UtilDB.listFiles();
-	      display(listMessages, out);
-      }
+//      }else{
+//    	  System.out.println("Made it to public files.");
+//    	  List<Audio_Files> listMessages = null;
+//		  listMessages = UtilDB.listFiles();
+//	      display(listMessages, out);
+//      }
       
       out.println("");
       out.println("</div>");
@@ -181,11 +180,11 @@ public class Files extends HttpServlet implements Info {
                + UtilDB.userNameById(file.getuid()) + ", " //
                + file.getName());
 
-         out.println("\n<div class=\"loginbox\">" + file.getName() + ". Made by: "
-                 + UtilDB.userNameById(file.getuid()) + ". Located at: "
+         out.println("\n<div class=\"loginbox\">File Name: " + file.getName() + "<br> Made by: "
+                 + UtilDB.userNameById(file.getuid()) + "<br> Located at: "
                  + file.getFilepath() 
                  + "<br>"
-                 + "<div>"
+                 + "<div><br>"
                  + "<button type:\"submit\" name = \"select\" value = \""+ file.getName()+"\"/>Select"
                  + "<button type:\"submit\" name = \"delete\" value = \""+ file.getName()+"\"/>Delete"
                  + "</div>"

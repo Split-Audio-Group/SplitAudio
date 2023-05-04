@@ -186,9 +186,9 @@ public class UpdateFiles extends HttpServlet {
 	    	  File file = new File(chosenFile.getFilepath());
 	    	  UtilDB.getSession().setFile(file);
 	    	  out.println("\n<div class=\"loginbox\">" 
-	    			  + "<h1>"
+	    			  + "<h2>"
 	    			  + chosenFile.getName() + " has been successfully set as the current file."
-	    			  + "</h1>"
+	    			  + "</h2>"
 	                  + "</div>"
 	                  + "<br>"
 	                  );
@@ -198,9 +198,9 @@ public class UpdateFiles extends HttpServlet {
 		      System.out.println(chosenFile.getName());
 	    	  UtilDB.deleteFile(chosenFile.getId());
 	    	  out.println("\n<div class=\"loginbox\">" 
-	    			  + "<h1>"
+	    			  + "<h2>"
 	    			  + chosenFile.getName() + " has been successfully deleted."
-	    			  + "</h1>"
+	    			  + "</h2>"
 	                  + "</div>"
 	                  + "<br>"
 	                  );

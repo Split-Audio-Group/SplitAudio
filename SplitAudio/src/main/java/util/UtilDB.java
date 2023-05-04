@@ -232,7 +232,7 @@ public class UtilDB {
 		      }
 		      return resultList;
 		   }
-	public static List<Audio_Files> listFilesByUser(User user) {
+	public static List<Audio_Files> listFilesByUser(int id) {
 	      List<Audio_Files> resultList = new ArrayList<Audio_Files>();
 
 	      Session session = getSessionFactory().openSession();
@@ -240,10 +240,10 @@ public class UtilDB {
 
 	      try {
 	         tx = session.beginTransaction();
-	         List<?> messages = session.createQuery("FROM Messages").list();
+	         List<?> messages = session.createQuery("FROM Audio_Files").list();
 	         for (Iterator<?> iterator = messages.iterator(); iterator.hasNext();) {
 	        	 Audio_Files file = (Audio_Files) iterator.next();
-	            if (file.getuid().equals(user.getId())||file.getpub()){
+	            if (file.getuid().equals(id)||file.getpub()){
 	               resultList.add(file);
 	            }
 	         }
