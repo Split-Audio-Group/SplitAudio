@@ -18,9 +18,15 @@
 	<servlet>
 		<description>
 		</description>
+<<<<<<< HEAD
 		<display-name>testing</display-name>
 		<servlet-name>testing</servlet-name>
 		<servlet-class>testing</servlet-class>
+=======
+		<display-name>FillDatabase</display-name>
+		<servlet-name>FillDatabase</servlet-name>
+		<servlet-class>jUnitTests.FillDatabase</servlet-class>
+>>>>>>> main
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Update</servlet-name>
@@ -31,8 +37,13 @@
 		<url-pattern>/UpdateFiles</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
+<<<<<<< HEAD
 		<servlet-name>testing</servlet-name>
 		<url-pattern>/testing</url-pattern>
+=======
+		<servlet-name>FillDatabase</servlet-name>
+		<url-pattern>/FillDatabase</url-pattern>
+>>>>>>> main
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
